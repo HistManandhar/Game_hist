@@ -362,7 +362,7 @@ async function fetchLeaderboard() {
     leaderboardList.innerHTML = '';
     
     try {
-        const response = await fetch('http://localhost:3000/api/scores');
+        const response = await fetch('/api/scores');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         
@@ -392,7 +392,7 @@ async function fetchLeaderboard() {
 
 async function submitScore(name, score) {
     try {
-        const response = await fetch('http://localhost:3000/api/scores', {
+        const response = await fetch('/api/scores', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

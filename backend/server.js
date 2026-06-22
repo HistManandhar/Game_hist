@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Supabase Configuration
 const supabaseUrl = process.env.SUPABASE_URL;
