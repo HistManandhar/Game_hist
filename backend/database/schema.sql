@@ -12,3 +12,15 @@ CREATE INDEX idx_driving_leaderboard_score ON driving_leaderboard (score DESC);
 
 -- Example row insertion for testing
 -- INSERT INTO driving_leaderboard (player_name, score) VALUES ('Speedster', 1500);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE driving_leaderboard ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow anyone to read scores
+CREATE POLICY "Allow public read access" ON driving_leaderboard
+    FOR SELECT TO anon USING (true);
+
+-- Create policy to allow anyone to insert a new score
+CREATE POLICY "Allow public insert access" ON driving_leaderboard
+    FOR INSERT TO anon WITH CHECK (true);
+
