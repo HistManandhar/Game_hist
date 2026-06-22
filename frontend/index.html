@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Drive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- HUD (Heads Up Display) -->
+        <div id="hud">
+            <div class="score-display">Distance: <span id="currentScore">0</span>m</div>
+            <div class="speed-display">Speed: <span id="currentSpeed">0</span>km/h</div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="overlay active">
+            <div class="overlay-content">
+                <h1>NEON DRIVE</h1>
+                <p>Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to Drive</p>
+                <p>Dodge the traffic!</p>
+                <button id="startBtn" class="btn primary-btn">START ENGINE</button>
+                <button id="viewLeaderboardBtn" class="btn secondary-btn">LEADERBOARD</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="overlay">
+            <div class="overlay-content">
+                <h2>CRASHED!</h2>
+                <div class="final-score">Distance Traveled: <span id="finalScoreDisplay">0</span>m</div>
+                
+                <form id="scoreForm" class="score-form">
+                    <input type="text" id="playerName" placeholder="Enter your name" maxlength="20" required autocomplete="off">
+                    <button type="submit" id="submitScoreBtn" class="btn primary-btn">SUBMIT SCORE</button>
+                </form>
+                
+                <button id="restartBtn" class="btn secondary-btn" style="display:none;">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboardScreen" class="overlay">
+            <div class="overlay-content leaderboard-content">
+                <h2>TOP RACERS</h2>
+                <div id="leaderboardLoading" class="loading">Loading scores...</div>
+                <ul id="leaderboardList" class="leaderboard-list"></ul>
+                <button id="closeLeaderboardBtn" class="btn secondary-btn">BACK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
