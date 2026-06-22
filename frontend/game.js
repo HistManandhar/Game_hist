@@ -112,6 +112,34 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+// Touch Handling for Mobile Dragging
+let isDragging = false;
+let touchStartX = 0;
+
+canvas.addEventListener('touchstart', (e) => {
+    if (gameState.isPlaying) {
+        isDragging = true;
+        touchStartX = e.touches[0].clientX;
+    }
+}, { passive: true });
+
+canvas.addEventListener('touchmove', (e) => {
+    if (isDragging && gameState.isPlaying) {
+        e.preventDefault(); // Prevent page scrolling
+        const touchX = e.touches[0].clientX;
+        const diffX = touchX - touchStartX;
+        player.x += diffX * 1.5; // Slightly higher sensitivity for mobile
+        touchStartX = touchX;
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchend', () => {
+    isDragging = false;
+});
+canvas.addEventListener('touchcancel', () => {
+    isDragging = false;
+});
+
 function initGame() {
     startScreen.classList.remove('active');
     gameOverScreen.classList.remove('active');
@@ -176,19 +204,11 @@ function spawnObstacle() {
 function updatePhysics() {
     if (!gameState.isPlaying) return;
 
-    // Acceleration & Braking
-    if (keys.ArrowUp || keys.w) {
-        gameState.speed += gameState.acceleration;
-    } else if (keys.ArrowDown || keys.s) {
-        gameState.speed -= gameState.acceleration * 2; // Braking is stronger
-    } else {
-        // Natural friction
-        gameState.speed -= gameState.friction;
-    }
+    // Speed increases automatically over time
+    gameState.speed += gameState.acceleration * 0.5; // Gradual automatic acceleration
 
     // Cap speed
     if (gameState.speed > gameState.maxSpeed) gameState.speed = gameState.maxSpeed;
-    if (gameState.speed < 2) gameState.speed = 2; // Minimum forward movement
 
     // Steering
     if (keys.ArrowLeft || keys.a) {

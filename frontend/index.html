@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="game-container">
         <!-- Main Game Canvas -->
@@ -34,12 +36,13 @@
             <div class="overlay-content">
                 <h2>CRASHED!</h2>
                 <div class="final-score">Distance Traveled: <span id="finalScoreDisplay">0</span>m</div>
-                
+
                 <form id="scoreForm" class="score-form">
-                    <input type="text" id="playerName" placeholder="Enter your name" maxlength="20" required autocomplete="off">
+                    <input type="text" id="playerName" placeholder="Enter your name" maxlength="20" required
+                        autocomplete="off">
                     <button type="submit" id="submitScoreBtn" class="btn primary-btn">SUBMIT SCORE</button>
                 </form>
-                
+
                 <button id="restartBtn" class="btn secondary-btn" style="display:none;">PLAY AGAIN</button>
             </div>
         </div>
@@ -57,4 +60,5 @@
 
     <script src="game.js"></script>
 </body>
+
 </html>
